@@ -2,13 +2,13 @@
 // Created by just on 07.11.2021.
 //
 
+#include <ctime>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include "triangle.h"
 
 using namespace std;
-
 
 
 void read_file(const std::string &filename, vector<vector<uint32_t>> &tr) {
@@ -54,6 +54,15 @@ uint32_t triangle_rec(const string &filename) {
 }
 
 void write_random(const string &filename, uint32_t count) {
-    fstream out(filename);
-    auto i = 1;
+    ofstream out;
+    srand(time(nullptr));
+    out.open(filename, ofstream::out | ofstream::trunc);
+    auto size = 1;
+    for (auto i = 0; i < count; ++i) {
+        for (auto j = 0; j < i + 1; ++j) {
+            auto k = rand() % 255;
+            out << k << ' ';
+        }
+        out << '\n';
+    }
 }
