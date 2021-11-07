@@ -9,6 +9,8 @@
 
 using namespace std;
 
+
+
 void read_file(const std::string &filename, vector<vector<uint32_t>> &tr) {
     fstream in(filename);
     string line;
@@ -36,4 +38,22 @@ uint32_t triangle(const std::string &filename) {
         }
     }
     return tr[0][0];
+}
+
+uint32_t find_rec(vector<vector<uint32_t>> &tr, uint32_t row = 0, uint32_t col = 0, uint32_t total = 0) {
+    if (row == tr.size() - 1) {
+        return total + tr[row][col];
+    }
+    return max(find_rec(tr, row + 1, col, total + tr[row][col]), find_rec(tr, row + 1, col + 1, total + tr[row][col]));
+}
+
+uint32_t triangle_rec(const string &filename) {
+    vector<vector<uint32_t>> tr;
+    read_file(filename, tr);
+    return find_rec(tr);
+}
+
+void write_random(const string &filename, uint32_t count) {
+    fstream out(filename);
+    auto i = 1;
 }

@@ -1,7 +1,10 @@
 #include <iostream>
 #include "src/triangle.h"
 
+using namespace std;
+
 int main() {
-    std:: cout << triangle("tr1.txt");
+    cout << triangle("tr1.txt") << endl;
+    cout << triangle_rec("tr1.txt") << endl;
     return 0;
 }
